@@ -1,0 +1,546 @@
+@prefix : <http://www.fortiss.org/ont/human-action#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix seq: <http://www.fortiss.org/ont/robotics/seq#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <http://www.fortiss.org/ont/robotics/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time> .
+@prefix skill: <http://www.fortiss.org/ont/robotics/skill#> .
+@prefix object: <http://www.fortiss.org/ont/robotics/object#> .
+@prefix capability: <http://www.fortiss.org/ont/robotics/capability#> .
+@prefix human-action: <http://www.fortiss.org/ont/human-action#> .
+@base <http://www.fortiss.org/ont/human-action> .
+
+<http://www.fortiss.org/ont/human-action> rdf:type owl:Ontology ;
+                                           owl:imports <http://www.fortiss.org/ont/robotics/object> ,
+                                                       <http://www.fortiss.org/ont/robotics/skill> ,
+                                                       <http://www.fortiss.org/ont/robotics/task> ;
+                                           rdfs:comment "Ontology for defining human-object interactions." ;
+                                           dc:rights "Copyright (c) 2023 fortiss GmbH. All rights reserved."@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.fortiss.org/ont/human-action#hasActionDuration
+human-action:hasActionDuration rdf:type owl:ObjectProperty ;
+                               rdfs:domain core:HumanAction ;
+                               rdfs:range <http://www.w3.org/2006/time#Duration> .
+
+
+###  http://www.fortiss.org/ont/human-action#hasEndHandPose
+human-action:hasEndHandPose rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf human-action:hasHandPose ;
+                            rdfs:domain human-action:DurableAction ;
+                            rdfs:range core:Pose .
+
+
+###  http://www.fortiss.org/ont/human-action#hasEndTime
+human-action:hasEndTime rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf <http://www.w3.org/2006/time#hasTime> ;
+                        rdfs:domain human-action:DurableAction ;
+                        rdfs:range <http://www.w3.org/2006/time#Instance> .
+
+
+###  http://www.fortiss.org/ont/human-action#hasFrame
+human-action:hasFrame rdf:type owl:ObjectProperty .
+
+
+###  http://www.fortiss.org/ont/human-action#hasGraspType
+human-action:hasGraspType rdf:type owl:ObjectProperty ;
+                          rdfs:domain human-action:PrimitiveAction ;
+                          rdfs:range human-action:GraspType .
+
+
+###  http://www.fortiss.org/ont/human-action#hasHandPose
+human-action:hasHandPose rdf:type owl:ObjectProperty ;
+                         rdfs:domain human-action:PrimitiveAction ;
+                         rdfs:range core:Pose .
+
+
+###  http://www.fortiss.org/ont/human-action#hasNext
+human-action:hasNext rdf:type owl:ObjectProperty ;
+                     rdfs:domain human-action:HandObjectInteraction ;
+                     rdfs:range human-action:HandObjectInteraction .
+
+
+###  http://www.fortiss.org/ont/human-action#hasObejctInHand
+human-action:hasObejctInHand rdf:type owl:ObjectProperty ;
+                             rdfs:domain human-action:HandObjectInteraction ;
+                             rdfs:range core:Part .
+
+
+###  http://www.fortiss.org/ont/human-action#hasObjectInHand
+human-action:hasObjectInHand rdf:type owl:ObjectProperty .
+
+
+###  http://www.fortiss.org/ont/human-action#hasPickObject
+human-action:hasPickObject rdf:type owl:ObjectProperty ;
+                           rdfs:range core:Part .
+
+
+###  http://www.fortiss.org/ont/human-action#hasPlaceObject
+human-action:hasPlaceObject rdf:type owl:ObjectProperty ;
+                            rdfs:range core:Part .
+
+
+###  http://www.fortiss.org/ont/human-action#hasPose
+human-action:hasPose rdf:type owl:ObjectProperty .
+
+
+###  http://www.fortiss.org/ont/human-action#hasStartHandPose
+human-action:hasStartHandPose rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf human-action:hasHandPose ;
+                              rdfs:domain human-action:DurableAction ;
+                              rdfs:range core:Pose .
+
+
+###  http://www.fortiss.org/ont/human-action#hasStartTime
+human-action:hasStartTime rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf <http://www.w3.org/2006/time#hasTime> ;
+                          rdfs:domain human-action:DurableAction ;
+                          rdfs:range <http://www.w3.org/2006/time#Instance> .
+
+
+###  http://www.fortiss.org/ont/human-action#isPerformedBy
+human-action:isPerformedBy rdf:type owl:ObjectProperty ;
+                           rdfs:domain core:HumanAction ;
+                           rdfs:range core:Human .
+
+
+###  http://www.fortiss.org/ont/human-action#isPerformedOn
+human-action:isPerformedOn rdf:type owl:ObjectProperty ;
+                           rdfs:domain human-action:PrimitiveAction ;
+                           rdfs:range core:Object .
+
+
+###  http://www.fortiss.org/ont/human-action#performedAtTime
+human-action:performedAtTime rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf <http://www.w3.org/2006/time#hasTime> ;
+                             rdfs:domain core:HumanAction ;
+                             rdfs:range <http://www.w3.org/2006/time#TemporalEntity> .
+
+
+###  http://www.fortiss.org/ont/human-action#performsCapability
+human-action:performsCapability rdf:type owl:ObjectProperty .
+
+
+###  http://www.fortiss.org/ont/human-action#startsWith
+human-action:startsWith rdf:type owl:ObjectProperty ;
+                        rdfs:domain human-action:HandObjectInteraction ;
+                        rdfs:range human-action:HandObjectInteraction .
+
+
+###  http://www.fortiss.org/ont/robotics/core#endsWith
+core:endsWith rdf:type owl:ObjectProperty .
+
+
+###  http://www.fortiss.org/ont/robotics/core#hasPickObject
+core:hasPickObject rdf:type owl:ObjectProperty .
+
+
+###  http://www.fortiss.org/ont/robotics/core#hasPlaceObject
+core:hasPlaceObject rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#hasBeginning
+<http://www.w3.org/2006/time#hasBeginning> rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf <http://www.w3.org/2006/time#hasTime> ;
+                                           rdfs:domain <http://www.w3.org/2006/time#TemporalEntity> ;
+                                           rdfs:range <http://www.w3.org/2006/time#Instance> .
+
+
+###  http://www.w3.org/2006/time#hasDuration
+<http://www.w3.org/2006/time#hasDuration> rdf:type owl:ObjectProperty ;
+                                          rdfs:subPropertyOf <http://www.w3.org/2006/time#hasTemporalDuration> ;
+                                          rdfs:range <http://www.w3.org/2006/time#Duration> .
+
+
+###  http://www.w3.org/2006/time#hasEnd
+<http://www.w3.org/2006/time#hasEnd> rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf <http://www.w3.org/2006/time#hasTime> ;
+                                     rdfs:domain <http://www.w3.org/2006/time#TemporalEntity> ;
+                                     rdfs:range <http://www.w3.org/2006/time#Instance> .
+
+
+###  http://www.w3.org/2006/time#hasTemporalDuration
+<http://www.w3.org/2006/time#hasTemporalDuration> rdf:type owl:ObjectProperty ;
+                                                  rdfs:domain <http://www.w3.org/2006/time#TemporalEntity> ;
+                                                  rdfs:range <http://www.w3.org/2006/time#TemporalDuration> .
+
+
+###  http://www.w3.org/2006/time#hasTime
+<http://www.w3.org/2006/time#hasTime> rdf:type owl:ObjectProperty ;
+                                      rdfs:range <http://www.w3.org/2006/time#TemporalEntity> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.w3.org/2006/time#inSecond
+<http://www.w3.org/2006/time#inSecond> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.fortiss.org/ont/human-action#CompositeAction
+human-action:CompositeAction rdf:type owl:Class ;
+                             rdfs:subClassOf human-action:HandObjectInteraction .
+
+
+###  http://www.fortiss.org/ont/human-action#DurableAction
+human-action:DurableAction rdf:type owl:Class ;
+                           rdfs:subClassOf human-action:PrimitiveAction ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty human-action:hasEndHandPose ;
+                                             owl:someValuesFrom human-action:HandPose
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty human-action:hasEndTime ;
+                                             owl:someValuesFrom <http://www.w3.org/2006/time#Instance>
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty human-action:hasObjectInHand ;
+                                             owl:someValuesFrom core:Part
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty human-action:hasStartHandPose ;
+                                             owl:someValuesFrom human-action:HandPose
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty human-action:hasStartTime ;
+                                             owl:someValuesFrom <http://www.w3.org/2006/time#Instance>
+                                           ] .
+
+
+###  http://www.fortiss.org/ont/human-action#Grasp
+human-action:Grasp rdf:type owl:Class ;
+                   rdfs:subClassOf human-action:InstantAction .
+
+
+###  http://www.fortiss.org/ont/human-action#GraspType
+human-action:GraspType rdf:type owl:Class ;
+                       rdfs:subClassOf core:HumanAction .
+
+
+###  http://www.fortiss.org/ont/human-action#HandObjectInteraction
+human-action:HandObjectInteraction rdf:type owl:Class ;
+                                   rdfs:subClassOf core:HumanAction ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty human-action:isPerformedBy ;
+                                                     owl:someValuesFrom core:Human
+                                                   ] .
+
+
+###  http://www.fortiss.org/ont/human-action#HandPose
+human-action:HandPose rdf:type owl:Class ;
+                      rdfs:subClassOf core:HumanAction ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty core:hasTransform ;
+                                        owl:someValuesFrom seq:Transform
+                                      ] .
+
+
+###  http://www.fortiss.org/ont/human-action#Hold
+human-action:Hold rdf:type owl:Class ;
+                  rdfs:subClassOf human-action:DurableAction .
+
+
+###  http://www.fortiss.org/ont/human-action#InsertTerminalBlock
+human-action:InsertTerminalBlock rdf:type owl:Class ;
+                                 owl:equivalentClass [ owl:intersectionOf ( human-action:PickAndPlace
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty human-action:hasPickObject ;
+                                                                              owl:someValuesFrom object:TerminalBlock
+                                                                            ]
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty human-action:hasPlaceObject ;
+                                                                              owl:someValuesFrom object:TopHatRail
+                                                                            ]
+                                                                          ) ;
+                                                       rdf:type owl:Class
+                                                     ] ;
+                                 rdfs:subClassOf human-action:SkillBasedAction ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty human-action:performsCapability ;
+                                                   owl:hasValue human-action:InsertTerminalBlockSkill-PerformedCapability
+                                                 ] .
+
+
+###  http://www.fortiss.org/ont/human-action#InstantAction
+human-action:InstantAction rdf:type owl:Class ;
+                           rdfs:subClassOf human-action:PrimitiveAction ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty human-action:hasHandPose ;
+                                             owl:someValuesFrom human-action:HandPose
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty human-action:performedAtTime ;
+                                             owl:someValuesFrom <http://www.w3.org/2006/time#Instance>
+                                           ] .
+
+
+###  http://www.fortiss.org/ont/human-action#Move
+human-action:Move rdf:type owl:Class ;
+                  rdfs:subClassOf human-action:DurableAction .
+
+
+###  http://www.fortiss.org/ont/human-action#NoGrasp
+human-action:NoGrasp rdf:type owl:Class ;
+                     rdfs:subClassOf human-action:GraspType .
+
+
+###  http://www.fortiss.org/ont/human-action#PickAndPlace
+human-action:PickAndPlace rdf:type owl:Class ;
+                          rdfs:subClassOf human-action:CompositeAction ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty human-action:hasPickObject ;
+                                            owl:someValuesFrom core:Part
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty human-action:hasPlaceObject ;
+                                            owl:someValuesFrom core:Part
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty human-action:performsCapability ;
+                                            owl:hasValue human-action:PickAndPlaceSkill-PerformedCapability
+                                          ] .
+
+
+###  http://www.fortiss.org/ont/human-action#PowerGrasp
+human-action:PowerGrasp rdf:type owl:Class ;
+                        owl:equivalentClass [ rdf:type owl:Class ;
+                                              owl:oneOf ( human-action:IndexFingerExtension
+                                                          human-action:SmallDiameter
+                                                        )
+                                            ] ;
+                        rdfs:subClassOf human-action:GraspType .
+
+
+###  http://www.fortiss.org/ont/human-action#PrecisionGrasp
+human-action:PrecisionGrasp rdf:type owl:Class ;
+                            owl:equivalentClass [ rdf:type owl:Class ;
+                                                  owl:oneOf ( human-action:TipPinch
+                                                              human-action:Tripod
+                                                            )
+                                                ] ;
+                            rdfs:subClassOf human-action:GraspType .
+
+
+###  http://www.fortiss.org/ont/human-action#PrimitiveAction
+human-action:PrimitiveAction rdf:type owl:Class ;
+                             rdfs:subClassOf human-action:HandObjectInteraction ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty human-action:hasGraspType ;
+                                               owl:someValuesFrom human-action:GraspType
+                                             ] ,
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty human-action:isPerformedOn ;
+                                               owl:someValuesFrom core:Part
+                                             ] .
+
+
+###  http://www.fortiss.org/ont/human-action#Process
+human-action:Process rdf:type owl:Class ;
+                     rdfs:subClassOf human-action:HandObjectInteraction .
+
+
+###  http://www.fortiss.org/ont/human-action#Release
+human-action:Release rdf:type owl:Class ;
+                     rdfs:subClassOf human-action:InstantAction .
+
+
+###  http://www.fortiss.org/ont/human-action#ScrewTightening
+human-action:ScrewTightening rdf:type owl:Class ;
+                             owl:equivalentClass [ owl:intersectionOf ( human-action:UseTool
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty human-action:hasPickObject ;
+                                                                          owl:someValuesFrom object:ScrewDriver
+                                                                        ]
+                                                                      ) ;
+                                                   rdf:type owl:Class
+                                                 ] ;
+                             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                               owl:onProperty human-action:performsCapability ;
+                                               owl:hasValue human-action:ScrewTigheningSkill-PerformedCapability
+                                             ] .
+
+
+###  http://www.fortiss.org/ont/human-action#SkillBasedAction
+human-action:SkillBasedAction rdf:type owl:Class ;
+                              rdfs:subClassOf human-action:HandObjectInteraction .
+
+
+###  http://www.fortiss.org/ont/human-action#UseTool
+human-action:UseTool rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( human-action:PickAndPlace
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty human-action:hasPickObject ;
+                                                                  owl:someValuesFrom object:Tool
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
+                     rdfs:subClassOf human-action:SkillBasedAction ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty human-action:performsCapability ;
+                                       owl:hasValue human-action:UseToolSkill-PerformedCapability
+                                     ] .
+
+
+###  http://www.fortiss.org/ont/human-action#Wiring
+human-action:Wiring rdf:type owl:Class ;
+                    rdfs:subClassOf human-action:PickAndPlace ,
+                                    human-action:SkillBasedAction .
+
+
+###  http://www.fortiss.org/ont/robotics/capability#ScrewTighteningCapability
+capability:ScrewTighteningCapability rdf:type owl:Class ;
+                                     rdfs:subClassOf core:Capability .
+
+
+###  http://www.fortiss.org/ont/robotics/capability#UseToolCapability
+capability:UseToolCapability rdf:type owl:Class ;
+                             rdfs:subClassOf core:Capability .
+
+
+###  http://www.fortiss.org/ont/robotics/core#Frame
+core:Frame rdf:type owl:Class .
+
+
+###  http://www.fortiss.org/ont/robotics/core#Human
+core:Human rdf:type owl:Class .
+
+
+###  http://www.fortiss.org/ont/robotics/core#HumanAction
+core:HumanAction rdf:type owl:Class .
+
+
+###  http://www.fortiss.org/ont/robotics/core#Object
+core:Object rdf:type owl:Class .
+
+
+###  http://www.fortiss.org/ont/robotics/core#Pose
+core:Pose rdf:type owl:Class .
+
+
+###  http://www.fortiss.org/ont/robotics/core#ScrewDriver
+core:ScrewDriver rdf:type owl:Class ;
+                 rdfs:subClassOf core:Tool .
+
+
+###  http://www.fortiss.org/ont/robotics/object#ScrewDriver
+object:ScrewDriver rdf:type owl:Class ;
+                   rdfs:subClassOf object:Tool .
+
+
+###  http://www.fortiss.org/ont/robotics/object#Tool
+object:Tool rdf:type owl:Class ;
+            rdfs:subClassOf core:Part .
+
+
+###  http://www.w3.org/2006/time#Duration
+<http://www.w3.org/2006/time#Duration> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/time#TemporalDuration> .
+
+
+###  http://www.w3.org/2006/time#Instance
+<http://www.w3.org/2006/time#Instance> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/time#TemporalEntity> .
+
+
+###  http://www.w3.org/2006/time#Interval
+<http://www.w3.org/2006/time#Interval> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/time#TemporalEntity> ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <http://www.w3.org/2006/time#hasBeginning> ;
+                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass <http://www.w3.org/2006/time#Instance>
+                                                       ] ,
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty <http://www.w3.org/2006/time#hasEnd> ;
+                                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass <http://www.w3.org/2006/time#Instance>
+                                                       ] .
+
+
+###  http://www.w3.org/2006/time#TemporalDuration
+<http://www.w3.org/2006/time#TemporalDuration> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#TemporalEntity
+<http://www.w3.org/2006/time#TemporalEntity> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.fortiss.org/ont/human-action#IndexFingerExtension
+human-action:IndexFingerExtension rdf:type owl:NamedIndividual ,
+                                           human-action:PowerGrasp .
+
+
+###  http://www.fortiss.org/ont/human-action#InsertTerminalBlockSkill-PerformedCapability
+human-action:InsertTerminalBlockSkill-PerformedCapability rdf:type owl:NamedIndividual ,
+                                                                   capability:InsertTerminalBlockCapability .
+
+
+###  http://www.fortiss.org/ont/human-action#PickAndPlaceSkill-PerformedCapability
+human-action:PickAndPlaceSkill-PerformedCapability rdf:type owl:NamedIndividual ,
+                                                            capability:PickAndPlaceCapability .
+
+
+###  http://www.fortiss.org/ont/human-action#ScrewTigheningSkill-PerformedCapability
+human-action:ScrewTigheningSkill-PerformedCapability rdf:type owl:NamedIndividual ,
+                                                              capability:ScrewTighteningCapability .
+
+
+###  http://www.fortiss.org/ont/human-action#SmallDiameter
+human-action:SmallDiameter rdf:type owl:NamedIndividual ,
+                                    human-action:PowerGrasp .
+
+
+###  http://www.fortiss.org/ont/human-action#TipPinch
+human-action:TipPinch rdf:type owl:NamedIndividual ,
+                               human-action:PrecisionGrasp .
+
+
+###  http://www.fortiss.org/ont/human-action#Tripod
+human-action:Tripod rdf:type owl:NamedIndividual ,
+                             human-action:PrecisionGrasp .
+
+
+###  http://www.fortiss.org/ont/human-action#UseToolSkill-PerformedCapability
+human-action:UseToolSkill-PerformedCapability rdf:type owl:NamedIndividual ,
+                                                       capability:UseToolCapability .
+
+
+###  http://www.fortiss.org/ont/human-action#WiringSkill-PerfromedCapability
+human-action:WiringSkill-PerfromedCapability rdf:type owl:NamedIndividual ,
+                                                      capability:WiringCapability .
+
+
+###  http://www.fortiss.org/ont/human-action#test-pap
+human-action:test-pap rdf:type owl:NamedIndividual ,
+                               human-action:PickAndPlace ;
+                      human-action:hasPickObject human-action:test-terminalblock ;
+                      human-action:hasPlaceObject human-action:test-rail .
+
+
+###  http://www.fortiss.org/ont/human-action#test-rail
+human-action:test-rail rdf:type owl:NamedIndividual ,
+                                object:TopHatRail .
+
+
+###  http://www.fortiss.org/ont/human-action#test-terminalblock
+human-action:test-terminalblock rdf:type owl:NamedIndividual ,
+                                         object:TerminalBlock .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

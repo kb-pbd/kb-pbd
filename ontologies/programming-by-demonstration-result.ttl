@@ -1,0 +1,243 @@
+@prefix empress-union: <http://www.fortiss.org/ont/empress/empress-union#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix gui-interaction: <http://www.fortiss.org/ont/gui-interaction#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+@prefix ooi: <http://www.fortiss.org/ont/robotics/ooi#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix process-controlcabinet: <http://www.fortiss.org/ont/empress/process-controlcabinet#> .
+@prefix sc: <http://www.fortiss.org/ont/robotics/sc#> .
+@prefix path: <http://www.ontotext.com/path#> .
+@prefix capability: <http://www.fortiss.org/ont/robotics/capability#> .
+@prefix esco-subset: <http://www.fortiss.org/ont/empress/esco-subset#> .
+@prefix f-ua-device: <https://fortiss.org/UA/Device/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix workcell-1: <http://www.fortiss.org/ont/empress/workcell-1#> .
+@prefix perception-1: <http://www.fortiss.org/ont/empress/perception-1#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix skill: <http://www.fortiss.org/ont/robotics/skill#> .
+@prefix process-terminalblock: <http://www.fortiss.org/ont/empress/process-terminalblock#> .
+@prefix human-action: <http://www.fortiss.org/ont/human-action#> .
+@prefix opcf-ua-di: <http://opcfoundation.org/UA/DI/> .
+@prefix seq: <http://www.fortiss.org/ont/robotics/seq#> .
+@prefix rdf4j: <http://rdf4j.org/schema/rdf4j#> .
+@prefix f-ua-robotics: <https://fortiss.org/UA/Robotics/> .
+@prefix opcf-ua: <http://opcfoundation.org/UA/> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix f-ua-iiwa: <https://fortiss.org/UA/iiwa/> .
+@prefix programming-by-demonstration: <http://www.fortiss.org/ont/human-action/programming-by-demonstration#> .
+@prefix union: <http://www.fortiss.org/ont/empress/union#> .
+@prefix empress: <http://www.fortiss.org/ont/empress/empress#> .
+@prefix task-PickAndPlaceTask-C: <http://www.fortiss.org/ont/empress/task-PickAndPlaceTask-C#> .
+@prefix core: <http://www.fortiss.org/ont/robotics/core#> .
+@prefix task: <http://www.fortiss.org/ont/robotics/task#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix esco: <http://data.europa.eu/esco/model#> .
+@prefix sesame: <http://www.openrdf.org/schema/sesame#> .
+@prefix time: <http://www.w3.org/2006/time> .
+@prefix task-InsertTerminalBlockTask-A: <http://www.fortiss.org/ont/empress/task-InsertTerminalBlockTask-A#> .
+@prefix opcf-ua-robotics: <http://opcfoundation.org/UA/Robotics/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix object: <http://www.fortiss.org/ont/robotics/object#> .
+
+<http://www.fortiss.org/ont/human-action/programming-by-demonstration> a owl:Ontology;
+  owl:imports <http://www.fortiss.org/ont/human-action>;
+  dc:rights "Copyright (c) 2023 fortiss GmbH. All rights reserved."@en .
+
+programming-by-demonstration:Actor-1 a owl:NamedIndividual, core:Abstract, core:Actor .
+
+programming-by-demonstration:ParallelGripper-1 a owl:NamedIndividual, core:ParallelGripper,
+    core:Abstract .
+
+human-action:Hand-Rail-Lateral-Offset a owl:NamedIndividual;
+  seq:_dp_4 0.14 .
+
+human-action:1716 a owl:NamedIndividual, human-action:Process;
+  rdfs:comment "Programming by demonsration";
+  skos:prefLabel "Programming by demonsration";
+  human-action:hasNext human-action:InsertTerminalBlock-1;
+  core:identifier "Programming by demonsration" .
+
+human-action:Grasp-1 a owl:NamedIndividual, human-action:Grasp;
+  human-action:hasHandPose human-action:Grasp-1-handPose;
+  human-action:hasGraspType human-action:SmallDiameter;
+  human-action:hasNext human-action:Hold-1;
+  human-action:isPerformedBy empress:HumanWorker-1;
+  human-action:isPerformedOn process-controlcabinet:FeedThroughTerminalBlockPt10-1;
+  human-action:performedAtTime human-action:Grasp-1-TimeStamp .
+
+human-action:Grasp-1-TimeStamp a owl:NamedIndividual, <http://www.w3.org/2006/timeInstance>;
+  <http://www.w3.org/2006/timeinSecond> 1693322247.1397073 .
+
+human-action:Grasp-1-handPose a owl:NamedIndividual, human-action:HandPose;
+  core:hasTransform human-action:Grasp-1-HandPose-Tranform .
+
+human-action:Grasp-1-HandPose-Tranform a owl:NamedIndividual, seq:Transform;
+  seq:_dp_1 -0.8333253134996568;
+  seq:_dp_10 0.3125811624360598;
+  seq:_dp_11 -0.8393243511309332;
+  seq:_dp_12 0.07210006328703866;
+  seq:_dp_2 0.48787041961655364;
+  seq:_dp_3 -0.25990647460936117;
+  seq:_dp_4 0.5457676753449737;
+  seq:_dp_5 0.3282396554225876;
+  seq:_dp_6 0.8150309629414636;
+  seq:_dp_7 0.47747592405771777;
+  seq:_dp_8 0.3009909049097811;
+  seq:_dp_9 0.4447782037024292 .
+
+human-action:Hold-1 a owl:NamedIndividual, human-action:Hold;
+  human-action:hasEndHandPose human-action:Hold-1-handPose-End;
+  human-action:hasEndTime human-action:Hold-1-TimeStamp-End;
+  human-action:hasGraspType human-action:SmallDiameter;
+  human-action:hasNext human-action:Release-1;
+  human-action:hasStartHandPose human-action:Hold-1-handPose-Start;
+  human-action:hasStartTime human-action:Hold-1-TimeStamp-Start;
+  human-action:isPerformedBy empress:HumanWorker-1;
+  human-action:isPerformedOn process-controlcabinet:FeedThroughTerminalBlockPt10-1 .
+
+human-action:Hold-1-TimeStamp-Start a owl:NamedIndividual, <http://www.w3.org/2006/timeInstance>;
+  <http://www.w3.org/2006/timeinSecond> 1693322247.1430414 .
+
+human-action:Hold-1-handPose-Start a owl:NamedIndividual, human-action:HandPose;
+  core:hasTransform human-action:Hold-1-HandPose-Start-Tranform .
+
+human-action:Hold-1-HandPose-Start-Tranform a owl:NamedIndividual, seq:Transform;
+  seq:_dp_1 -0.8333253134996568;
+  seq:_dp_10 0.3125811624360598;
+  seq:_dp_11 -0.8393243511309332;
+  seq:_dp_12 0.07210006328703866;
+  seq:_dp_2 0.48787041961655364;
+  seq:_dp_3 -0.25990647460936117;
+  seq:_dp_4 0.5457676753449737;
+  seq:_dp_5 0.3282396554225876;
+  seq:_dp_6 0.8150309629414636;
+  seq:_dp_7 0.47747592405771777;
+  seq:_dp_8 0.3009909049097811;
+  seq:_dp_9 0.4447782037024292 .
+
+human-action:Hold-1-TimeStamp-End a owl:NamedIndividual, <http://www.w3.org/2006/timeInstance>;
+  <http://www.w3.org/2006/timeinSecond> 1693322252.8410993 .
+
+human-action:Hold-1-handPose-End a owl:NamedIndividual, human-action:HandPose;
+  core:hasTransform human-action:Hold-1-HandPose-End-Tranform .
+
+human-action:Hold-1-HandPose-End-Tranform a owl:NamedIndividual, seq:Transform;
+  seq:_dp_1 -0.2924900343542456;
+  seq:_dp_10 0.5315901301538657;
+  seq:_dp_11 0.3112311880716848;
+  seq:_dp_12 0.13179331930738225;
+  seq:_dp_2 -0.1218707056680498;
+  seq:_dp_3 0.9484709330830458;
+  seq:_dp_4 0.17997793036000498;
+  seq:_dp_5 0.5421277512809765;
+  seq:_dp_6 -0.8381882035813718;
+  seq:_dp_7 0.05948139766400867;
+  seq:_dp_8 0.04753144077611243;
+  seq:_dp_9 0.7877481076425913 .
+
+human-action:Release-1 a owl:NamedIndividual, human-action:Release;
+  human-action:hasHandPose human-action:Release-1-handPose;
+  human-action:hasGraspType human-action:Idle;
+  human-action:isPerformedBy empress:HumanWorker-1;
+  human-action:isPerformedOn process-controlcabinet:TopHatRail-1;
+  human-action:performedAtTime human-action:Release-1-TimeStamp .
+
+human-action:Release-1-TimeStamp a owl:NamedIndividual, <http://www.w3.org/2006/timeInstance>;
+  <http://www.w3.org/2006/timeinSecond> 1693322252.8433058 .
+
+human-action:Release-1-handPose a owl:NamedIndividual, human-action:HandPose;
+  core:hasTransform human-action:Release-1-HandPose-Tranform .
+
+human-action:Release-1-HandPose-Tranform a owl:NamedIndividual, seq:Transform;
+  seq:_dp_1 -0.2924900343542456;
+  seq:_dp_10 0.5315901301538657;
+  seq:_dp_11 0.3112311880716848;
+  seq:_dp_12 0.13179331930738225;
+  seq:_dp_2 -0.1218707056680498;
+  seq:_dp_3 0.9484709330830458;
+  seq:_dp_4 0.17997793036000498;
+  seq:_dp_5 0.5421277512809765;
+  seq:_dp_6 -0.8381882035813718;
+  seq:_dp_7 0.05948139766400867;
+  seq:_dp_8 0.04753144077611243;
+  seq:_dp_9 0.7877481076425913 .
+
+human-action:InsertTerminalBlock-1 a owl:NamedIndividual, human-action:PickAndPlace;
+  human-action:hasPickObject process-controlcabinet:FeedThroughTerminalBlockPt10-1;
+  human-action:hasPlaceObject process-controlcabinet:TopHatRail-1;
+  human-action:isPerformedBy empress:HumanWorker-1;
+  human-action:startsWith human-action:Grasp-1;
+  human-action:EndsWith human-action:Release-1 .
+
+human-action:1716-robot-process a owl:NamedIndividual, core:Abstract, core:Process;
+  rdfs:comment "Robot process from programming by demonsration";
+  skos:prefLabel "Robot process from programming by demonsration";
+  core:startsWith human-action:1716-robot-process-InsertTerminalBlockTask-1;
+  core:identifier "Robot process from programming by demonsration" .
+
+human-action:1716-robot-process-InsertTerminalBlockTask-1 a owl:Thing, owl:NamedIndividual,
+    core:Abstract, task-InsertTerminalBlockTask-A:InsertTerminalBlockTask-A, core:Task,
+    _:node56, task:InsertTerminalBlockTask, _:node70, _:node72, _:node73, _:node74, _:node75,
+    _:node76, _:node77, _:node78, _:node79, _:node80, _:node84, _:node89, _:node90, _:node91,
+    _:node95, _:node96, _:node102, _:node104, _:node105, _:node106, _:node107, _:node108,
+    _:node109, _:node110, _:node111, _:node112, _:node113, _:node114, _:node123, _:node126,
+    _:node130, _:node131, _:node132, _:node133, _:node134, _:node135, _:node136, _:node137,
+    _:node143, _:node145, _:node149, _:node151, _:node156, _:node223, _:node225;
+  core:hasPickObject process-controlcabinet:FeedThroughTerminalBlockPt10-1;
+  core:hasPlaceObject process-controlcabinet:TopHatRail-1;
+  core:hasActor programming-by-demonstration:Actor-1;
+  core:hasEffectUpdate task:InsertTerminalBlockTask-EffectUpdate;
+  core:hasTool programming-by-demonstration:ParallelGripper-1;
+  core:hasTargetFrame human-action:1716-robot-process-InsertTerminalBlockTask-1-TargetFrame;
+  core:hasStatusConstruct ooi:Task-StatusConstruct;
+  core:hasTemplateTask task-InsertTerminalBlockTask-A:InsertTerminalBlockTask-A-Template;
+  core:hasAttribute task:Attribute-MaxNumberOfError;
+  core:hasMappingUpdate task:Task-MappingUpdate, task:HasActor-MappingUpdate, task:HasPickObject-MappingUpdate,
+    task:HasPlaceObject-MappingUpdate;
+  core:hasMatchingUpdate task:Task-MatchingUpdate;
+  core:hasStatus task:Status-Beginning, task:Status-End, task:Status-NumberOfErrors,
+    task:Status-NumberOfExecutions, task:Status-TaskStatus;
+  core:hasMaxNumberOfErrors 2;
+  core:requiresCapability task:InsertTerminalBlockTask-RequiredCapability;
+  core:hasParameter task:Parameter-TargetFrame, task:Parameter-Actor, task:Parameter-Tool,
+    task:Parameter-PickObject, task:Parameter-PlaceObject;
+  core:hasTemplateUpdate task:InsertTerminalBlockTask-TemplateUpdate;
+  core:hasVariable task:Attribute-MaxNumberOfError, task:Status-Beginning, task:Status-End,
+    task:Status-NumberOfErrors, task:Status-NumberOfExecutions, task:Status-TaskStatus,
+    task:Parameter-TargetFrame, task:Parameter-Actor, task:Parameter-Tool, task:Parameter-PickObject,
+    task:Parameter-PlaceObject;
+  core:requiresSkill <http://data.europa.eu/esco/skill/76dd4fe9-7bae-4c80-9f6a-cf24b78e6d60> .
+
+human-action:1716-robot-process-InsertTerminalBlockTask-1-TargetFrame a core:Frame;
+  core:fromJoint human-action:1716-robot-process-InsertTerminalBlockTask-1-TargetFrameJoint .
+
+human-action:1716-robot-process-InsertTerminalBlockTask-1-TargetFrameJoint a core:ImaginaryJoint;
+  core:hasTransform human-action:1716-robot-process-InsertTerminalBlockTask-1-TargetFrameJointTransform;
+  core:fromFrame process-controlcabinet:TopHatRail-1 .
+
+human-action:1716-robot-process-InsertTerminalBlockTask-1-TargetFrameJointTransform
+  a owl:Thing, owl:NamedIndividual, seq:Transform, seq:Array, _:node168, _:node169,
+    _:node170, _:node171, _:node172, _:node173, _:node174, _:node175;
+  seq:_dp_1 1.0;
+  seq:_dp_10 0.0;
+  seq:_dp_11 1.0;
+  seq:_dp_12 0.015;
+  seq:_dp_2 0.0;
+  seq:_dp_3 0.0;
+  seq:_dp_4 0.03997793036000498;
+  seq:_dp_5 0.0;
+  seq:_dp_6 1.0;
+  seq:_dp_7 0.0;
+  seq:_dp_8 0.0;
+  seq:_dp_9 0.0;
+  seq:_dim_1 4;
+  seq:size 16;
+  seq:_dim_2 4;
+  seq:_dp_13 0.0;
+  seq:_dp_14 0.0;
+  seq:_dp_15 0.0;
+  seq:_dp_16 1.0;
+  seq:dimsize 2 .

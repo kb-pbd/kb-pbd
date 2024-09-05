@@ -1,0 +1,7 @@
+bool start_stop_recorder
+string dataset_folder_path
+string label_name
+int64 label_index
+
+---
+bool service_responce
